@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { userInfoState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+  const router = useRouter();
   const [createUsergql] = useMutation(CREATE_USER);
   const { register, handleSubmit } = useForm();
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -24,6 +26,7 @@ export default function Signup() {
       });
       Modal.success({ content: "가입을 축하합니다." });
       setUserInfo(result.data?.createUser);
+      router.push("/");
     } catch (error) {
       Modal.error({ content: error.message });
     }

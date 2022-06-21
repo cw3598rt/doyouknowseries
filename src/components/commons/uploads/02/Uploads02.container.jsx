@@ -23,7 +23,7 @@ export default function Uploads02(props) {
       });
       return false;
     }
-    return true;
+    return file;
   };
   const onChangeFile = async (event) => {
     const file = checkValidationImage(event.target.files?.[0]);
@@ -34,13 +34,12 @@ export default function Uploads02(props) {
         file: file,
       },
     });
-
+    console.log(result.data.uploadFile.url);
     props.onChangeFileUrls(result.data.uploadFile.url, props.index);
   };
 
   return (
     <Uploads02UI
-      register={props.register}
       onChangeFile={onChangeFile}
       inputFileRef={inputFileRef}
       onClickInput={onClickInput}

@@ -16,6 +16,9 @@ export const Title = styled.span`
   padding-left: 10px;
   color: cadetblue;
 `;
+export const ID = styled.span`
+  color: cadetblue;
+`;
 
 export const Login = styled.button`
   width: 60px;

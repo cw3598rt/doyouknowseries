@@ -14,6 +14,12 @@ export default function Sidebar() {
   const onMovetoYoutube = () => {
     router.push("/youtube/list");
   };
+  const onMovetoMarket = () => {
+    router.push("/usedItems/list");
+  };
+  const onMovetoSell = () => {
+    router.push("/usedItems/new");
+  };
 
   return (
     <SidebarUI
@@ -21,6 +27,8 @@ export default function Sidebar() {
       onMovetoHome={onMovetoHome}
       onMovetoList={onMovetoList}
       onMovetoNew={onMovetoNew}
+      onMovetoMarket={onMovetoMarket}
+      onMovetoSell={onMovetoSell}
     />
   );
 }

@@ -10,6 +10,8 @@ export default function SidebarUI(props) {
       <S.Btns onClick={props.onMovetoYoutube}>Do you know?</S.Btns>
       <S.Btns onClick={props.onMovetoList}>게시판 목록</S.Btns>
       <S.Btns onClick={props.onMovetoNew}>게시글 작성</S.Btns>
+      <S.Btns onClick={props.onMovetoMarket}>중고마켓</S.Btns>
+      <S.Btns onClick={props.onMovetoSell}>물건올리기</S.Btns>
       <S.Btns>노트장</S.Btns>
     </S.Wrapper>
   );

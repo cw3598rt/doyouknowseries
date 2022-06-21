@@ -15,9 +15,8 @@ export default function Uploads02UI(props) {
       <S.RealInputs
         type="file"
         multiple
-        {...props.register{"images"}}
-        // ref={props.inputFileRef}
-        // onChange={props.onChangeFile}
+        ref={props.inputFileRef}
+        onChange={props.onChangeFile}
       />
     </>
   );

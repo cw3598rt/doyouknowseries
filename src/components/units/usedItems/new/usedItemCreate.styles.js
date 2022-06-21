@@ -14,8 +14,15 @@ export const Title = styled.h1`
   font-size: 2rem;
   color: forestgreen;
 `;
-
 export const Form = styled.form`
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1rem 1rem 1rem;
+`;
+export const Form2 = styled.form`
   width: 80%;
   height: 100%;
   display: flex;

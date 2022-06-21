@@ -28,8 +28,15 @@ const Main = styled.div`
   padding: 1rem 2rem 1rem 2rem;
 `;
 
-const HIDDEN_HEADER = ["/", "/login/signup"];
-const HIDDEN_BANNER = ["/", "/login/signup", "/boards/detail", "/youtube/list"];
+const HIDDEN_HEADER = ["/", "/login/signup", "/youtube/list"];
+const HIDDEN_BANNER = [
+  "/",
+  "/boards/new",
+  "/login/signup",
+  "/boards/detail",
+  "/youtube/list",
+  "/usedItems/new",
+];
 const HIDDEN_SIDEBAR = ["/", "/login/signup"];
 export default function Layout(props) {
   const router = useRouter();

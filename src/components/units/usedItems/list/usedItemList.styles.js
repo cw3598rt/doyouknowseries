@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
 import { Tooltip } from "antd";
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 export const Wrapper = styled.div`
-  width: 90%;
+  width: 80%;
   height: 700px;
   overflow-y: auto;
   background-color: #f9f9f9;
@@ -13,6 +21,16 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   padding: 0.5em 2em 2em 2em;
 `;
+export const TodayBox = styled.div`
+  width: 20%;
+  height: 700px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  margin: auto;
+  border-radius: 20px;
+  padding: 0.5em 2em 2em 2em;
+`;
+
 export const ListBox = styled.div`
   height: 150px;
   display: flex;
@@ -68,4 +86,36 @@ export const Price = styled.span`
 export const Date = styled.span`
   color: cadetblue;
   font-size: 1em;
+`;
+
+export const WishedBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; ;
+`;
+
+export const ImageBox = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const WishedImg = styled.img`
+  width: 80px;
+  height: 80px;
+`;
+export const Like = styled.span`
+  color: cadetblue;
+  font-size: 1.4em;
+`;
+export const WishedDetailBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const WishedItemName = styled.span`
+  color: cadetblue;
+  font-size: 1.4em;
+`;
+export const WishedItemPrice = styled.span`
+  color: forestgreen;
+  font-size: 1.4em;
 `;

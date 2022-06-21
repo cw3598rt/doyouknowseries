@@ -12,3 +12,11 @@ export const userInfoState = atom({
     name: "",
   },
 });
+export const clickedItemsState = atom({
+  key: "clickedItemsState",
+  default: [],
+});
+export const userLoggedWishItemsState = atom({
+  key: "userLoggedWishItemsState",
+  default: [],
+});

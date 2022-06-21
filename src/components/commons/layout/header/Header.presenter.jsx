@@ -9,7 +9,7 @@ function HeaderUI() {
   return (
     <S.Wrapper>
       <S.Title>Welcome to "Do you know club"</S.Title>
-      <span>{userInfo.name}님 환영합니다.</span>
+      <S.ID>{userInfo.name}님 환영합니다.</S.ID>
     </S.Wrapper>
   );
 }

@@ -1,8 +1,16 @@
 import styled from "@emotion/styled";
-import { AimOutlined } from "@ant-design/icons";
+import { AimOutlined, HeartOutlined } from "@ant-design/icons";
 
 export const Location = styled(AimOutlined)``;
-
+export const Heart = styled(HeartOutlined)`
+  cursor: pointer;
+  font-size: 2em;
+  color: red;
+  :hover {
+    transform: scale(1.4);
+  }
+  transition: all 250ms ease-in;
+`;
 export const Wrapper = styled.div`
   width: 90%;
   height: 100%;
@@ -55,6 +63,11 @@ export const PicBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+`;
+
+export const IMG = styled.img`
+  width: 10em;
+  height: 10em;
 `;
 export const Detail = styled.pre`
   white-space: pre-wrap;

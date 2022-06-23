@@ -27,10 +27,12 @@ export default function CreateUsedItem(props) {
   const [address, setAddress] = useState("");
   const [geoinfo, setGeoinfo] = useState("");
   const router = useRouter();
-  const { register, handleSubmit, formState, setValue, trigger } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const { register, handleSubmit, formState, setValue, trigger, reset } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
+
   const [imgUrl, setImgUrl] = useState(["", ""]);
   const onChangeContents = (value) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -85,6 +87,14 @@ export default function CreateUsedItem(props) {
     newFileUrls[index] = fileUrl;
     setImgUrl(newFileUrls);
   };
+  useEffect(() => {
+    reset({
+      name: props.defaultData?.fetchUseditem.name,
+      remarks: props.defaultData?.fetchUseditem.remarks,
+      contents: props.defaultData?.fetchUseditem.contents,
+      price: Number(props.defaultData?.fetchUseditem.price) || "",
+    });
+  }, [props.defaultData?.fetchUseditem]);
   useEffect(() => {
     if (props.defaultData?.fetchUseditem.images?.length) {
       setImgUrl([...props.defaultData.fetchUseditem.images]);
@@ -141,8 +151,8 @@ export default function CreateUsedItem(props) {
 
                 // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
                 setAddress(
-                  result[0].road_address.address_name ||
-                    result[0].address.address_name
+                  result[0].road_address?.address_name ||
+                    result[0].address?.address_name
                 );
                 setGeoinfo(mouseEvent.latLng);
                 infowindow.setContent(content);
@@ -151,11 +161,6 @@ export default function CreateUsedItem(props) {
             }
           );
         });
-
-        function searchAddrFromCoords(coords, callback) {
-          // 좌표로 행정동 주소 정보를 요청합니다
-          geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
-        }
 
         function searchDetailAddrFromCoords(coords, callback) {
           // 좌표로 법정동 상세 주소 정보를 요청합니다
@@ -203,7 +208,10 @@ export default function CreateUsedItem(props) {
             defaultValue={props.defaultData?.fetchUseditem.contents}
             {...register("contents")}
           /> */}
-          <ReactQuill onChange={onChangeContents} />
+          <ReactQuill
+            onChange={onChangeContents}
+            defaultValue={props.defaultData?.fetchUseditem.contents}
+          />
           <S.Error>{formState.errors.contents?.message}</S.Error>
         </S.ContentsBox>
         <S.PriceBox>

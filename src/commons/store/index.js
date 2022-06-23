@@ -20,3 +20,8 @@ export const userLoggedWishItemsState = atom({
   key: "userLoggedWishItemsState",
   default: [],
 });
+
+export const QuestionIdState = atom({
+  key: "QuestionIdState",
+  default: "",
+});

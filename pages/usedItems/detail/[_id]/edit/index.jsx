@@ -39,11 +39,15 @@ const FETCH_USED_ITEM = gql`
 
 export default function UsedItemEditPage() {
   const router = useRouter();
-  const { data: defaultData } = useQuery(FETCH_USED_ITEM, {
+  const { data: defaultData, loading } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: router.query._id,
     },
   });
 
-  return <CreateUsedItem isEdit={true} defaultData={defaultData} />;
+  return loading ? (
+    ""
+  ) : (
+    <CreateUsedItem isEdit={true} defaultData={defaultData} />
+  );
 }

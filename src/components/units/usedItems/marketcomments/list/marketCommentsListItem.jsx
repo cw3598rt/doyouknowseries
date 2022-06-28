@@ -4,7 +4,7 @@ import * as S from "./marketCommentsList.styles";
 import Dompurify from "dompurify";
 import AnswerNew from "../answernew/answerNew";
 import AnswerNewList from "../answernewlist/answerNewList";
-import { useEffect } from "react";
+
 export default function MarketCommentsListItem(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [open, setOpen] = useState(false);
@@ -17,10 +17,9 @@ export default function MarketCommentsListItem(props) {
 
   const onClickCreateAnswerOpen = (useditemQuestionId) => () => {
     setOpen(true);
+    setUseditemQuestionId(useditemQuestionId);
   };
-  useEffect(() => {
-    setUseditemQuestionId(props.el._id);
-  });
+
   return (
     <>
       {!isEdit && (
@@ -68,7 +67,7 @@ export default function MarketCommentsListItem(props) {
           open={open}
         />
       )}
-      <AnswerNewList useditemQuestionId={useditemQuestionId} />
+      <AnswerNewList useditemQuestionId={props.el._id} />
     </>
   );
 }

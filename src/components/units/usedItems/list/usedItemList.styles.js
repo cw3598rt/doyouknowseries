@@ -61,6 +61,7 @@ export const SellerBox = styled.div`
 export const IMG = styled.img`
   width: 100px;
   height: 100px;
+  border-radius: 10px;
 `;
 export const Seller = styled.span`
   font-size: 1em;
@@ -92,16 +93,33 @@ export const WishedBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; ;
+  :hover {
+    background-color: #bae3f9;
+    border-radius: 10px;
+    transform: scale(1.2);
+  }
+  cursor: pointer;
+  transition: all 250ms ease-in;
 `;
 
 export const ImageBox = styled.div`
   display: flex;
   flex-direction: row;
 `;
+export const SellerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SellerName = styled.span`
+  color: forestgreen;
+  font-size: 1em;
+`;
 export const WishedImg = styled.img`
   width: 80px;
   height: 80px;
+  border-radius: 10px;
+  margin-right: 4em;
 `;
 export const Like = styled.span`
   color: cadetblue;
@@ -110,6 +128,7 @@ export const Like = styled.span`
 export const WishedDetailBox = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 `;
 export const WishedItemName = styled.span`
   color: cadetblue;

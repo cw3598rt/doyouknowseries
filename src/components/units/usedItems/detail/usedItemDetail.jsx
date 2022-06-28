@@ -3,7 +3,11 @@ import DOMPurify from "dompurify";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { getDate } from "../../../../commons/libararies/utils";
-import { FETCH_USED_ITEM, DELETE_USEDITEM } from "./usedItemDetail.query";
+import {
+  FETCH_USED_ITEM,
+  DELETE_USEDITEM,
+  TOGGLE_USED_ITEM_PICK,
+} from "./usedItemDetail.query";
 import * as S from "./usedItemDetail.styles";
 import { Tooltip } from "antd";
 import Head from "next/head";
@@ -11,6 +15,7 @@ import { useEffect } from "react";
 export default function UsedItemDetail() {
   const router = useRouter();
   const [deleteUseditemgql] = useMutation(DELETE_USEDITEM);
+  const [likeBtngql] = useMutation(TOGGLE_USED_ITEM_PICK);
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: router.query._id,
@@ -98,7 +103,24 @@ export default function UsedItemDetail() {
         );
       });
     };
-  }, [data?.fetchUseditem.useditemAddress?.address]);
+  }, [data?.fetchUseditem.useditemAddress?.address || ""]);
+
+  const onClickLikeBtn = async () => {
+    await likeBtngql({
+      variables: {
+        useditemId: router.query._id,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_USED_ITEM,
+          variables: {
+            useditemId: router.query._id,
+          },
+        },
+      ],
+    });
+  };
+
   return (
     <S.Wrapper>
       <Head></Head>
@@ -109,11 +131,16 @@ export default function UsedItemDetail() {
           <Tooltip title={data?.fetchUseditem.useditemAddress?.address}>
             <S.Location />
           </Tooltip>
-          <S.Heart
-            onClick={() => {
-              onClickWishedItem(data?.fetchUseditem);
-            }}
-          />
+          <Tooltip title={`찜하기${data?.fetchUseditem.pickedCount}`}>
+            <S.Heart onClick={onClickLikeBtn} />
+          </Tooltip>
+          <Tooltip title="장바구니~">
+            <S.Basket
+              onClick={() => {
+                onClickWishedItem(data?.fetchUseditem);
+              }}
+            />
+          </Tooltip>
         </S.SmallDetailbox>
       </S.SellerBox>
       <S.Divider></S.Divider>

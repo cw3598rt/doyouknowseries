@@ -11,6 +11,11 @@ const FETCH_USED_ITEM = gql`
       price
       images
       pickedCount
+      useditemAddress {
+        zipcode
+        address
+        addressDetail
+      }
       buyer {
         _id
         email

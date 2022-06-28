@@ -4,13 +4,11 @@ import Dompurify from "dompurify";
 import * as S from "./answerNewList.styles";
 export default function AnswerNewListItems(props) {
   const [isEdit, setIsEdit] = useState(false);
-  const [open, setOpen] = useState(false);
+
   const onOpenUpdate = () => {
     setIsEdit(true);
   };
-  const onClickCreateAnswerOpen = () => {
-    setOpen(true);
-  };
+
   return (
     <>
       {!isEdit && (
@@ -25,8 +23,7 @@ export default function AnswerNewListItems(props) {
             </S.ProfileBox>
             <S.BtnBox>
               <S.Editbtn onClick={onOpenUpdate} />
-              <S.Deletebtn />
-              <S.Reply onClick={onClickCreateAnswerOpen} />
+              <S.Deletebtn onClick={props.onClickAnswerDelete(props.el?._id)} />
             </S.BtnBox>
           </S.HeadBox>
           <S.ContentsBox>
@@ -48,12 +45,7 @@ export default function AnswerNewListItems(props) {
           isEdit={isEdit}
           prevValue={props.el}
           setIsEdit={setIsEdit}
-        />
-      )}
-      {open && (
-        <AnswerNew
-          useditemQuestionId={props.useditemQuestionId}
-          setOpen={setOpen}
+          useditemQuestionAnswerId={props.el._id}
         />
       )}
     </>

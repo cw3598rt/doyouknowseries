@@ -27,15 +27,18 @@ const FETCH_USER_LOGGED_IN = gql`
 const schema = yup.object({
   email: yup
     .string()
-    // .email("이메일 형식이 적합하지 않습니다.")
-    .required("필수 입력 사항입니다"),
+    .matches(
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+      "이메일 아이디를 @까지 정확하게 입력해주세요."
+    )
+    .required("이메일 아이디를 @까지 정확하게 입력해주세요."),
   password: yup
     .string()
-    // .matches(
-    //   /^[a-zA-Z0-9+][`~₩!@#\$%\^&\*\(\)_\-=\+\{\}\[\];:'"\,\.<>/\?+]{8,16}$/,
-    //   "영문, 숫자, 특수문자포함 8글자-16글자"
-    // )
-    .required("필수 입력 사항입니다."),
+    .matches(
+      /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/,
+      "영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요."
+    )
+    .required("영문+숫자 조합 8~16자리의 비밀번호를 입력해주세요."),
 });
 
 export default function Home() {

@@ -16,8 +16,26 @@ export const Title = styled.span`
   padding-left: 10px;
   color: cadetblue;
 `;
+export const Btns = styled.button`
+  background-color: cadetblue;
+  border: none;
+  color: white;
+  margin-left: 1em;
+  margin-right: 1em;
+  cursor: pointer;
+  border-radius: 10px;
+  :hover {
+    transform: scale(1.2);
+  }
+  transition: all 250ms ease-in;
+`;
+
 export const ID = styled.span`
   color: cadetblue;
+  :hover {
+    font-size: 1.2em;
+  }
+  transition: all 250ms ease-in;
 `;
 
 export const Login = styled.button`

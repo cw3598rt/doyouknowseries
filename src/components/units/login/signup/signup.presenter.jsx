@@ -28,6 +28,7 @@ export default function SignupUI(props) {
           <S.PasswordValidationinput
             type="password"
             name="passwordValidation"
+            {...props.register("password2")}
           />
         </S.PasswordValidationBox>
         <S.Signupbtn>가입하기</S.Signupbtn>

@@ -1,7 +1,20 @@
 import styled from "@emotion/styled";
-import { AimOutlined, HeartOutlined } from "@ant-design/icons";
+import {
+  AimOutlined,
+  HeartOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
 
 export const Location = styled(AimOutlined)``;
+export const Basket = styled(ShoppingCartOutlined)`
+  cursor: pointer;
+  font-size: 2em;
+  color: cadetblue;
+  :hover {
+    transform: scale(1.4);
+  }
+  transition: all 250ms ease-in;
+`;
 export const Heart = styled(HeartOutlined)`
   cursor: pointer;
   font-size: 2em;

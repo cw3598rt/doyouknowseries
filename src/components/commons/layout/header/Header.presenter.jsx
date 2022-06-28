@@ -9,7 +9,12 @@ function HeaderUI() {
   return (
     <S.Wrapper>
       <S.Title>Welcome to "Do you know club"</S.Title>
-      <S.ID>{userInfo.name}님 환영합니다.</S.ID>
+      <div>
+        <S.Btns>장바구니</S.Btns>
+        <S.Btns>my Page</S.Btns>
+        <S.ID>{userInfo.name}님 환영합니다.</S.ID>
+        <S.Btns>로그아웃</S.Btns>
+      </div>
     </S.Wrapper>
   );
 }

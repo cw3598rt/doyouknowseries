@@ -18,3 +18,10 @@ export const FETCH_USED_ITEM_QUESTION_ANSWERS = gql`
     }
   }
 `;
+export const DELETE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation variables($useditemQuestionAnswerId: ID!) {
+    deleteUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    )
+  }
+`;

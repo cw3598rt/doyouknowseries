@@ -3,13 +3,16 @@ export default function UsedItemListItem(props) {
   return (
     <S.ListBox onClick={props.onClickMoveToItem(props.el)}>
       <S.SellerBox>
-        {props.el.images
-          .filter((el) => el !== "")
-          .slice(0, 1)
-          .map((el) => (
-            <S.IMG src={`https://storage.googleapis.com/${el}`} />
-          ))}
-
+        {props.el.images.filter((el) => el !== "")[0] && (
+          <S.IMG
+            src={`https://storage.googleapis.com/${
+              props.el.images.filter((el) => el !== "")[0]
+            }`}
+          />
+        )}
+        {!props.el.images.filter((el) => el !== "")[0] && (
+          <S.IMG src="/noimage.png" />
+        )}
         <S.Seller>{props.el.seller.name}님</S.Seller>
       </S.SellerBox>
       <S.DetailBox>

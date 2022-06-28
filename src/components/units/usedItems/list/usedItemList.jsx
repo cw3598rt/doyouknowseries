@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import { clickedItemsState } from "../../../../commons/store";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { Modal } from "antd";
 
 export default function UsedItemList() {
   const listRef = useRef();
@@ -22,7 +23,11 @@ export default function UsedItemList() {
   }, []);
   const onClickMoveToItem = (useditemId) => () => {
     router.push(`/usedItems/detail/${useditemId._id}`);
-    const updatedclickeditems = [...clickeditems, { ...useditemId }];
+    if (JSON.stringify(clickeditems).includes(JSON.stringify(useditemId))) {
+      Modal.warning({ content: "이미 체크하신 상품이네요" });
+      return;
+    }
+    const updatedclickeditems = [{ ...useditemId }, ...clickeditems];
     setClickeditems(updatedclickeditems);
   };
   const loadFunc = () => {
@@ -63,7 +68,7 @@ export default function UsedItemList() {
       </S.Wrapper>
       <S.TodayBox>
         {clickeditems.map((el) => (
-          <WishItems key={v4()} el={el} />
+          <WishItems key={v4()} el={el} onClickMoveToItem={onClickMoveToItem} />
         ))}
       </S.TodayBox>
     </S.Container>

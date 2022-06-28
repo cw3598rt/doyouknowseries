@@ -20,3 +20,24 @@ export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
     }
   }
 `;
+export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation variables(
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $useditemQuestionAnswerId: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    ) {
+      _id
+      contents
+      user {
+        name
+        picture
+      }
+      createdAt
+      updatedAt
+      deletedAt
+    }
+  }
+`;

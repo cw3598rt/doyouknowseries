@@ -72,3 +72,15 @@ export const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
     }
   }
 `;
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query variables {
+    fetchUserLoggedIn {
+      name
+      email
+      userPoint {
+        amount
+      }
+    }
+  }
+`;

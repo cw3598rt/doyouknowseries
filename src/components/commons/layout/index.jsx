@@ -36,6 +36,8 @@ const HIDDEN_BANNER = [
   "/boards/detail",
   "/youtube/list",
   "/usedItems/new",
+  "/mypage/profile",
+  "/mypage/basket",
 ];
 const HIDDEN_SIDEBAR = ["/", "/login/signup"];
 export default function Layout(props) {

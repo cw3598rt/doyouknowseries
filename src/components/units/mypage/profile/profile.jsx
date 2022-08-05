@@ -1,14 +1,21 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../commons/store";
-import { CREATE_POINT_TRANSACTION_OF_LOADING } from "./profile.query";
+import {
+  CREATE_POINT_TRANSACTION_OF_LOADING,
+  FETCH_USER_LOGGED_IN,
+} from "./profile.query";
+import * as S from "./profile.styles";
 export default function Profile() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const router = useRouter();
   const [createpointgql] = useMutation(CREATE_POINT_TRANSACTION_OF_LOADING);
   const [value, setValue] = useState("");
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
   const onClickCharge = () => {
     const IMP = window.IMP; // 생략 가능
     IMP.init("imp49910675"); // 예: imp00000000
@@ -31,8 +38,14 @@ export default function Profile() {
             variables: {
               impUid: rsp.imp_uid,
             },
+            refetchQueries: [
+              {
+                query: FETCH_USER_LOGGED_IN,
+              },
+            ],
           });
           console.log(result);
+
           //   ...,
           // 결제 성공 시 로직,
           //   ...
@@ -51,9 +64,18 @@ export default function Profile() {
   const onChangeValue = (event) => {
     setValue(event.target.value);
   };
+  const onClickMoveToLikePage = () => {
+    router.push("/mypage/like");
+  };
+  const onClickMoveToSoldPage = () => {
+    router.push("/mypage/sold");
+  };
+  const onClickMoveToBoughtPage = () => {
+    router.push("/mypage/bought");
+  };
 
   return (
-    <div>
+    <S.Container>
       <Head>
         {/* <!-- jQuery --> */}
         <script
@@ -66,16 +88,15 @@ export default function Profile() {
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
-      <div>
-        <div>
-          <img />
-          <span>email</span>
-          <span>이름</span>
-          <span>userpoint</span>
-        </div>
-        <div>
+      <S.Wrapper>
+        <S.UserInfoBox>
+          <S.Email>{userInfo.email}</S.Email>
+          <S.Name>{userInfo.name}</S.Name>
+          <S.Points>{data?.fetchUserLoggedIn?.userPoint.amount}</S.Points>
+        </S.UserInfoBox>
+        <S.ChargingBox>
           <h2>포인트 충전</h2>
-          <div>
+          <S.ChargingDetail>
             <select name="point" onChange={onChangeValue}>
               <option disabled selected>
                 금액을 선택하세요~
@@ -85,9 +106,14 @@ export default function Profile() {
               <option value="5000">5000</option>
             </select>
             <button onClick={onClickCharge}>충전하기</button>
-          </div>
-        </div>
+          </S.ChargingDetail>
+        </S.ChargingBox>
+      </S.Wrapper>
+      <div>
+        <button onClick={onClickMoveToLikePage}>찜목록</button>
+        <button onClick={onClickMoveToBoughtPage}>구매목록</button>
+        <button onClick={onClickMoveToSoldPage}>판매목록</button>
       </div>
-    </div>
+    </S.Container>
   );
 }
